@@ -1,0 +1,15 @@
+# Node.js
+node_modules
+
+# Miljøfilter
+.env
+.env.local
+.env.production
+.env.*.local
+.env.*.production
+
+server/.env
+server/.env.local
+server/.env.production
+server/.env.*.local
+server/.env.*.production
