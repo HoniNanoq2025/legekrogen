@@ -1,0 +1,2 @@
+# legekrogen
+legekrogen - fullstack project
