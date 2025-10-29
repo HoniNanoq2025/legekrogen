@@ -1,6 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
@@ -60,6 +62,11 @@ createRoot(document.getElementById("root")).render(
       <CssBaseline />
       <Router>
         <App />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2500}
+          theme="colored"
+        />
       </Router>
     </ThemeProvider>
   </StrictMode>
