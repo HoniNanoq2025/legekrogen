@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   Box,
   Container,
@@ -56,8 +57,10 @@ export default function ProductList() {
         // Henter produkter igen efter sletning
         const data = await getProducts();
         setProducts(data);
+        toast.success("Produktet blev slettet ✅");
       } catch (err) {
         setError(err.message);
+        toast.error("Der opstod en fejl under sletning ❌");
       }
     }
   };
