@@ -4,7 +4,7 @@ legekrogen - fullstack project
 
 **Backend**
 npm packages installed:
-dotenv express mongoose
+dotenv express mongoose cors
 
 **Frontend**
 npm packages installed:
