@@ -15,3 +15,5 @@ react-toastify
 react-icons
 @uidotdev/usehooks
 jwt-decode
+motion
+framer-motion
