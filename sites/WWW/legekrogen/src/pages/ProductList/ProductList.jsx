@@ -5,6 +5,7 @@ import {
   Container,
   Typography,
   Card,
+  CardActionArea,
   CardContent,
   CardMedia,
   Grid,
@@ -155,14 +156,22 @@ export default function ProductList() {
           )}
         </Box>
       ) : (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} justifyContent="center">
           {filteredProducts.map((product) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
+            <Grid
+              size={{ xs: 12, sm: 6, md: 4 }}
+              key={product.id}
+              sx={{
+                minWidth: { xs: "100%", sm: 368 },
+                maxWidth: { xs: "100%", sm: 368 },
+              }}
+            >
               <Card
                 sx={{
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
+                  minWidth: 250,
                   transition: "transform 0.2s, box-shadow 0.2s",
                   "&:hover": {
                     transform: "translateY(-4px)",
@@ -170,65 +179,68 @@ export default function ProductList() {
                   },
                 }}
               >
-                {product.image && (
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={product.image}
-                    alt={product.name}
-                    sx={{ objectFit: "cover" }}
-                  />
-                )}
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography variant="h3" gutterBottom>
-                    {product.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{
-                      mb: 2,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                    }}
-                  >
-                    {product.description}
-                  </Typography>
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    mb={2}
-                  >
-                    <Typography variant="h3" color="primary">
-                      {product.price} kr.
-                    </Typography>
-                    <Chip
-                      label={product.inStock ? "På lager" : "Udsolgt"}
-                      color={product.inStock ? "success" : "error"}
-                      size="small"
+                <CardActionArea
+                  onClick={() => navigate(`/products/${product.id}`)}
+                >
+                  {product.image && (
+                    <CardMedia
+                      component="img"
+                      image={product.image}
+                      alt={product.name}
+                      sx={{ width: "100%", height: 200, objectFit: "cover" }}
                     />
-                  </Box>
-                  <Box display="flex" gap={1} justifyContent="flex-end">
-                    <IconButton
-                      color="primary"
-                      onClick={() => navigate(`/products/${product.id}`)}
-                      size="small"
+                  )}
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography variant="h3" gutterBottom>
+                      {product.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{
+                        mb: 2,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                      }}
                     >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      color="error"
-                      onClick={() => handleDelete(product.id)}
-                      size="small"
+                      {product.description}
+                    </Typography>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                      mb={2}
                     >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                </CardContent>
+                      <Typography variant="h3" color="primary">
+                        {product.price} kr.
+                      </Typography>
+                      <Chip
+                        label={product.inStock ? "På lager" : "Udsolgt"}
+                        color={product.inStock ? "success" : "error"}
+                        size="small"
+                      />
+                    </Box>
+                  </CardContent>
+                </CardActionArea>
+                <Box display="flex" gap={1} justifyContent="flex-end">
+                  <IconButton
+                    color="primary"
+                    onClick={() => navigate(`/products/${product.id}`)}
+                    size="small"
+                  >
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDelete(product.id)}
+                    size="small"
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Box>
               </Card>
             </Grid>
           ))}
