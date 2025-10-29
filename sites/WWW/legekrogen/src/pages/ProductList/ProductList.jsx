@@ -225,7 +225,7 @@ export default function ProductList() {
                     </Box>
                   </CardContent>
                 </CardActionArea>
-                <Box display="flex" gap={1} justifyContent="flex-end">
+                <Box display="flex" gap={1} justifyContent="flex-end" p={1}>
                   <IconButton
                     color="primary"
                     onClick={() => navigate(`/products/${product.id}`)}
