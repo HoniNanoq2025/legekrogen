@@ -52,7 +52,9 @@ export default function ProductList() {
     if (window.confirm("Er du sikker på, at du vil slette dette produkt?")) {
       try {
         await deleteProduct(id);
-        await fetchProducts();
+        // Henter produkter igen efter sletning
+        const data = await getProducts();
+        setProducts(data);
       } catch (err) {
         setError(err.message);
       }
@@ -60,8 +62,10 @@ export default function ProductList() {
   };
 
   const filteredProducts = products.filter((product) => {
-    product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description?.toLowerCase().includes(searchTerm.toLowerCase());
+    return (
+      product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   });
 
   if (loading)
@@ -153,7 +157,7 @@ export default function ProductList() {
       ) : (
         <Grid container spacing={3}>
           {filteredProducts.map((product) => (
-            <Grid item xs={12} sm={6} md={4} key={product.id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
               <Card
                 sx={{
                   height: "100%",
